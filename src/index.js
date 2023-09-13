@@ -75,9 +75,19 @@ function Menu() {
 }
 
 function Footer() {
-  return (
-    <footer>{new Date().toLocaleTimeString()}.We're currently open!</footer>
-  );
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  if (isOpen === true) {
+    return (
+      <footer>{new Date().toLocaleTimeString()}(We're currently open!)</footer>
+    );
+  } else {
+    return (
+      <footer>{new Date().toLocaleTimeString()} (Sorry, We're closed.)</footer>
+    );
+  }
 }
 
 function Pizza() {
