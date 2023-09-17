@@ -79,14 +79,14 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
   return (
     <li className="pizza">
-      <img alt={props.pizzaObj.name} src={props.pizzaObj.photoName} />
+      <img alt={pizzaObj.name} src={pizzaObj.photoName} />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -101,20 +101,26 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
-        <p>{new Date().toLocaleTimeString()} Sorry, We're Closed.</p>
+        <p>
+          {new Date().toLocaleTimeString()} We're Closed. We're happy to welcome
+          you between {openHour}:00 to {closeHour}:00.
+        </p>
       )}
     </footer>
   );
 }
 
-function Order(props) {
+// Component for when the store is OPEN
+
+function Order({ closeHour, openHour }) {
   return (
     <div className="order">
       {new Date().toLocaleTimeString()}
       <p>
-        We're open until {props.closeHour}:00. Come visit us or order online.
+        We're open from {openHour}:00 to {closeHour}00. Come visit us or order
+        online.
       </p>
       <button className="btn">Order</button>
     </div>
