@@ -100,16 +100,24 @@ function Footer() {
 
   return (
     <footer className="footer">
-      {isOpen > 0 ? (
-        <div className="order">
-          {new Date().toLocaleTimeString()}
-          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
-          <button className="btn">Order</button>
-        </div>
+      {isOpen ? (
+        <Order closeHour={closeHour} />
       ) : (
         <p>{new Date().toLocaleTimeString()} Sorry, We're Closed.</p>
       )}
     </footer>
+  );
+}
+
+function Order(props) {
+  return (
+    <div className="order">
+      {new Date().toLocaleTimeString()}
+      <p>
+        We're open until {props.closeHour}:00. Come visit us or order online.
+      </p>
+      <button className="btn">Order</button>
+    </div>
   );
 }
 
